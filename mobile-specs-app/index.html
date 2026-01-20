@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Search and discover detailed specifications for any mobile phone">
+    <meta name="theme-color" content="#6366f1">
+    <title>Mobile Specs Finder - Phone Specifications Lookup</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <div class="header-left">
+                    <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                        <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                    </svg>
+                    <h1 class="title">Mobile Specs Finder</h1>
+                </div>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+            </div>
+        </header>
+
+        <main class="main">
+            <section class="search-section">
+                <form class="search-form" id="searchForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="brandInput" class="form-label">Brand</label>
+                            <div class="autocomplete-wrapper">
+                                <input 
+                                    type="text" 
+                                    id="brandInput" 
+                                    class="form-input" 
+                                    placeholder="e.g., Samsung, Apple, Xiaomi"
+                                    autocomplete="off"
+                                    required
+                                >
+                                <div class="autocomplete-dropdown" id="brandDropdown"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="modelInput" class="form-label">Model</label>
+                            <div class="autocomplete-wrapper">
+                                <input 
+                                    type="text" 
+                                    id="modelInput" 
+                                    class="form-input" 
+                                    placeholder="Select brand first"
+                                    autocomplete="off"
+                                    disabled
+                                    required
+                                >
+                                <div class="autocomplete-dropdown" id="modelDropdown"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary" id="searchBtn">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <path d="m21 21-4.35-4.35"></path>
+                            </svg>
+                            Search Specs
+                        </button>
+                        <button type="button" class="btn btn-secondary" id="clearBtn">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                            </svg>
+                            Clear
+                        </button>
+                    </div>
+                </form>
+
+                <div class="recent-searches" id="recentSearches">
+                    <div class="recent-header">
+                        <h3 class="recent-title">Recent Searches</h3>
+                        <button class="btn-text" id="clearHistoryBtn">Clear All</button>
+                    </div>
+                    <ul class="recent-list" id="recentList"></ul>
+                </div>
+            </section>
+
+            <section class="results-section" id="resultsSection">
+                <div class="loading-spinner" id="loadingSpinner">
+                    <div class="spinner"></div>
+                    <p class="loading-text">Fetching specifications...</p>
+                </div>
+
+                <div class="error-message" id="errorMessage">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="8" x2="12" y2="12"></line>
+                        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                    </svg>
+                    <p class="error-text" id="errorText"></p>
+                    <button class="btn btn-primary btn-retry" id="retryBtn">Try Again</button>
+                </div>
+
+                <div class="specs-container" id="specsContainer">
+                    <div class="specs-header" id="specsHeader"></div>
+                    <div class="specs-grid" id="specsGrid"></div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p class="footer-text">
+                Powered by <a href="https://api-ninjas.com/api/phonespecs" target="_blank" rel="noopener noreferrer">API Ninjas Phone Specifications API</a>
+            </p>
+            <p class="footer-text">
+                Built with ❤️ using Vanilla JavaScript
+            </p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
