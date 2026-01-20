@@ -1,4 +1,4 @@
-import WeatherSearch from '@/components/WeatherSearch';
+import Quiz from '@/components/Quiz';
 
 export default function Home() {
   return (
@@ -6,18 +6,18 @@ export default function Home() {
       <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-center gap-8 py-32 px-16 bg-white dark:bg-black">
         <div className="flex flex-col items-center text-center gap-2">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-900 dark:text-white">
-            Weather App
+            Interactive Quiz
           </h1>
           <p className="text-zinc-600 dark:text-zinc-400">
-            Get real-time weather information for any city around the world
+            Test your knowledge with our timed challenge!
           </p>
         </div>
         
-        <WeatherSearch />
+        <Quiz />
 
         <div className="mt-8 text-center text-xs text-zinc-500 dark:text-zinc-500">
-          <p>Powered by OpenWeatherMap API</p>
-          <p className="mt-1">Enter a city name to see current weather conditions</p>
+          <p>Each question has a 15-second timer</p>
+          <p className="mt-1">Select the correct answer to score points</p>
         </div>
       </main>
     </div>

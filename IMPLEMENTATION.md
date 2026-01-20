@@ -1,90 +1,50 @@
-# Weather API Integration Implementation
+# Interactive Quiz App Implementation
 
 ## Overview
 
-This implementation adds real-world weather API integration to the Next.js application using the OpenWeatherMap API. Users can search for any city worldwide and view current weather conditions including temperature, humidity, wind speed, and more.
+This implementation creates an interactive quiz application with question timers, scoring logic, and a responsive UI. The app tests user knowledge through a series of timed questions and provides immediate feedback.
 
 ## Changes Made
 
-### 1. API Route (`app/api/weather/route.ts`)
-- Created a Next.js API route handler for weather data
-- Accepts a `city` query parameter
-- Fetches data from OpenWeatherMap API
-- Returns formatted JSON with weather information
-- Includes proper error handling for invalid cities and API failures
+### 1. Quiz Component (`components/Quiz.tsx`)
+- Developed a comprehensive client-side quiz engine.
+- Implemented state management for:
+  - Current question tracking
+  - User score
+  - Timer logic (15 seconds per question)
+  - Answer selection and validation
+  - Quiz completion state
+- Added automatic progression to the next question after a brief delay when an answer is selected or time runs out.
+- Created a polished result screen showing the final score and performance summary.
 
-### 2. Weather Components
+### 2. Updated Home Page (`app/page.tsx`)
+- Replaced the previous weather app interface with the new Interactive Quiz UI.
+- Simplified the layout to focus on the quiz experience.
+- Maintained consistent styling and dark mode support.
 
-#### WeatherCard Component (`components/WeatherCard.tsx`)
-- Displays weather information in a clean, card-based UI
-- Shows:
-  - City name and country
-  - Weather description with icon
-  - Current temperature and "feels like" temperature
-  - Humidity, wind speed, pressure, and cloudiness
-  - Last updated timestamp
-- Fully responsive with dark mode support
-- Uses Next.js Image component for optimized weather icons
-
-#### WeatherSearch Component (`components/WeatherSearch.tsx`)
-- Client-side component with search functionality
-- Input field for city name entry
-- Loading states and error handling
-- Fetches weather data from the API route
-- Displays results using WeatherCard component
-
-### 3. Updated Home Page (`app/page.tsx`)
-- Replaced default Next.js template with weather app UI
-- Integrated WeatherSearch component
-- Added descriptive header and footer text
-- Maintains responsive design with dark mode
-
-### 4. Next.js Configuration (`next.config.ts`)
-- Added remote image pattern configuration
-- Allows loading weather icons from openweathermap.org domain
-- Required for Next.js Image optimization
-
-### 5. Environment Variables
-- Created `.env.example` file with API key template
-- Created `.env.local` file (gitignored) for local development
-- API key is stored securely as an environment variable
-
-### 6. Documentation (`README.md`)
-- Completely updated with:
-  - Project description and features
-  - Installation and setup instructions
-  - Usage guide
-  - API documentation with example response
-  - Tech stack information
-  - Deployment notes
+### 3. Documentation (`README.md`)
+- Completely rewritten to reflect the new quiz application.
+- Added features, usage instructions, and tech stack details.
 
 ## Technical Details
 
-### API Integration
-- Uses OpenWeatherMap API v2.5 (Current Weather Data endpoint)
-- Implements proper error handling for:
-  - Missing city parameter
-  - City not found (404)
-  - API failures
-- Returns metric units (Celsius, m/s)
-- Transforms API response into a clean, typed interface
+### Timer Logic
+- Uses `useEffect` and `setInterval` to handle the countdown.
+- Implements a 15-second limit per question.
+- Includes visual feedback (pulsing red text) when less than 5 seconds remain.
+- Uses a progress bar that animates in sync with the timer.
 
-### TypeScript
-- Fully typed components and API responses
-- Shared WeatherData interface between components
-- Type-safe props and state management
+### Scoring and Feedback
+- Questions are stored in a typed array with options and correct answer indices.
+- Immediate visual feedback is provided:
+  - Green border/background for correct answers.
+  - Red border/background for incorrect selections.
+  - Correct answer is highlighted even if the user picks the wrong one or time expires.
 
-### Styling
-- Uses Tailwind CSS for consistent styling
-- Dark mode support throughout
-- Responsive design for all screen sizes
-- Clean, modern UI with proper spacing and colors
-
-### Performance
-- API route runs server-side for better security
-- Next.js Image component for optimized icon loading
-- Proper loading states to improve user experience
-- Static generation where possible
+### Responsive Design
+- Built with Tailwind CSS 4.
+- Centered layout optimized for both desktop and mobile devices.
+- Uses a clean, card-based interface with subtle animations and transitions.
 
 ## Testing the Implementation
 
@@ -95,29 +55,18 @@ This implementation adds real-world weather API integration to the Next.js appli
 
 2. Open http://localhost:3000
 
-3. Enter a city name (e.g., "London", "Tokyo", "Paris")
+3. Answer the questions as they appear. Notice the timer decreasing at the top right.
 
-4. Click "Get Weather" to see current weather data
+4. After the 5th question, view your final score on the result screen.
 
-## API Key Setup
-
-To use with a real API key:
-
-1. Sign up for a free account at https://openweathermap.org/api
-2. Get your API key from the dashboard
-3. Copy `.env.example` to `.env.local`
-4. Replace the placeholder with your actual API key:
-   ```
-   OPENWEATHER_API_KEY=your_actual_api_key_here
-   ```
+5. Click "Try Again" to restart the quiz.
 
 ## Future Enhancements
 
 Possible improvements:
-- Add 5-day weather forecast
-- Include weather map visualization
-- Add geolocation support to auto-detect user's location
-- Cache weather data to reduce API calls
-- Add unit toggle (Celsius/Fahrenheit)
-- Include sunrise/sunset times
-- Add weather alerts and warnings
+- Add difficulty levels (Easy, Medium, Hard).
+- Fetch questions from an external API (like Open Quizz DB).
+- Add sound effects for correct/incorrect answers and timer ticking.
+- Implement a global leaderboard.
+- Add category selection for the quiz.
+- Support for multiple quiz sets.
