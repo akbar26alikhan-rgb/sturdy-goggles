@@ -1,5 +1,5 @@
 [build]
-  publish = "mobile-specs-app"
+  publish = "."
   command = ""
 
 [build.environment]
