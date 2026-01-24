@@ -1,25 +1,143 @@
-import CurrencyConverter from '@/components/CurrencyConverter';
+import Link from 'next/link';
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-center gap-8 py-32 px-16 bg-white dark:bg-black">
-        <div className="flex flex-col items-center text-center gap-2">
-          <h1 className="text-4xl font-bold tracking-tight text-zinc-900 dark:text-white">
-            Real-Time Currency Converter
+    <div className="min-h-screen bg-gradient-to-br from-blue-400 via-purple-500 to-pink-500">
+      {/* Hero Section */}
+      <div className="container mx-auto px-4 py-16">
+        <div className="text-center text-white">
+          <h1 className="text-6xl font-bold mb-6 drop-shadow-lg">
+            🎨 Welcome to Kids Apps! 🎨
           </h1>
-          <p className="text-zinc-600 dark:text-zinc-400">
-            Get accurate exchange rates and convert currencies instantly
+          <p className="text-xl mb-8 drop-shadow-md">
+            Fun and educational applications designed just for children
           </p>
         </div>
-        
-        <CurrencyConverter />
 
-        <div className="mt-8 text-center text-xs text-zinc-500 dark:text-zinc-500">
-          <p>Real-time exchange rates from reliable APIs</p>
-          <p className="mt-1">Support for 150+ currencies worldwide</p>
+        {/* App Cards */}
+        <div className="max-w-4xl mx-auto mt-16">
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Paint App Card */}
+            <Link href="/paint-app">
+              <div className="bg-white rounded-3xl shadow-2xl overflow-hidden transform hover:scale-105 transition-all duration-300 cursor-pointer border-4 border-purple-300">
+                <div className="bg-gradient-to-r from-purple-500 to-pink-500 p-8 text-white text-center">
+                  <div className="text-6xl mb-4">🎨</div>
+                  <h2 className="text-3xl font-bold mb-2">Kids Paint App</h2>
+                  <p className="text-purple-100">
+                    Unleash your creativity with colors and brushes!
+                  </p>
+                </div>
+                <div className="p-8">
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">🖌️</span>
+                      <span className="text-gray-700">Multiple brush tools and sizes</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">🌈</span>
+                      <span className="text-gray-700">20+ vibrant colors to choose from</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">📱</span>
+                      <span className="text-gray-700">Works on desktop, tablet, and mobile</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">💾</span>
+                      <span className="text-gray-700">Save your masterpieces as images</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">↶</span>
+                      <span className="text-gray-700">Undo and redo your actions</span>
+                    </div>
+                  </div>
+                  <div className="mt-6">
+                    <button className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold py-4 px-6 rounded-2xl text-lg shadow-lg hover:shadow-xl transition-all duration-200">
+                      Start Painting! 🎨
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </Link>
+
+            {/* Currency Converter Card */}
+            <Link href="/currency-converter">
+              <div className="bg-white rounded-3xl shadow-2xl overflow-hidden transform hover:scale-105 transition-all duration-300 cursor-pointer border-4 border-blue-300">
+                <div className="bg-gradient-to-r from-blue-500 to-green-500 p-8 text-white text-center">
+                  <div className="text-6xl mb-4">💱</div>
+                  <h2 className="text-3xl font-bold mb-2">Currency Converter</h2>
+                  <p className="text-blue-100">
+                    Learn about money and exchange rates!
+                  </p>
+                </div>
+                <div className="p-8">
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">🌍</span>
+                      <span className="text-gray-700">150+ currencies worldwide</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">⚡</span>
+                      <span className="text-gray-700">Real-time exchange rates</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">📊</span>
+                      <span className="text-gray-700">Interactive charts and graphs</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">🎓</span>
+                      <span className="text-gray-700">Educational and fun to learn</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">📱</span>
+                      <span className="text-gray-700">Works on all devices</span>
+                    </div>
+                  </div>
+                  <div className="mt-6">
+                    <button className="w-full bg-gradient-to-r from-blue-500 to-green-500 text-white font-bold py-4 px-6 rounded-2xl text-lg shadow-lg hover:shadow-xl transition-all duration-200">
+                      Start Converting! 💱
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </div>
         </div>
-      </main>
+
+        {/* Features Section */}
+        <div className="text-center text-white mt-16">
+          <h3 className="text-3xl font-bold mb-8">Why Choose Our Apps? ✨</h3>
+          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <div className="bg-white bg-opacity-20 rounded-2xl p-6 backdrop-blur-sm">
+              <div className="text-4xl mb-4">👶</div>
+              <h4 className="text-xl font-bold mb-2">Kid-Friendly</h4>
+              <p className="text-sm">
+                Designed specifically for children with large buttons, bright colors, and intuitive interfaces.
+              </p>
+            </div>
+            <div className="bg-white bg-opacity-20 rounded-2xl p-6 backdrop-blur-sm">
+              <div className="text-4xl mb-4">📚</div>
+              <h4 className="text-xl font-bold mb-2">Educational</h4>
+              <p className="text-sm">
+                Learn while you play! Our apps teach important concepts like creativity, math, and world geography.
+              </p>
+            </div>
+            <div className="bg-white bg-opacity-20 rounded-2xl p-6 backdrop-blur-sm">
+              <div className="text-4xl mb-4">🎯</div>
+              <h4 className="text-xl font-bold mb-2">Safe & Simple</h4>
+              <p className="text-sm">
+                No ads, no purchases, no complicated setups. Just pure, safe fun for kids of all ages.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div className="text-center text-white mt-16 pt-8 border-t border-white border-opacity-20">
+          <p className="text-sm opacity-80">
+            Made with ❤️ for children everywhere. Happy learning and creating! 🌟
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
