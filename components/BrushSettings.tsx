@@ -10,6 +10,9 @@ interface BrushSettingsProps {
 const BRUSH_SIZES: BrushSize[] = [2, 5, 10, 15, 20, 30, 50];
 
 export default function BrushSettings({ brushSize, onBrushSizeChange }: BrushSettingsProps) {
+  const currentIndex = Math.max(0, BRUSH_SIZES.indexOf(brushSize));
+  const percent = (currentIndex / (BRUSH_SIZES.length - 1)) * 100;
+
   return (
     <div className="space-y-4">
       {/* Current Brush Preview */}
@@ -42,21 +45,20 @@ export default function BrushSettings({ brushSize, onBrushSizeChange }: BrushSet
         <div className="relative">
           <input
             type="range"
-            min="2"
-            max="50"
-            step="1"
-            value={brushSize}
-            onChange={(e) => onBrushSizeChange(Number(e.target.value) as BrushSize)}
-            className="w-full h-3 bg-purple-200 rounded-lg appearance-none cursor-pointer slider"
+            min={0}
+            max={BRUSH_SIZES.length - 1}
+            step={1}
+            value={currentIndex}
+            onChange={(e) => onBrushSizeChange(BRUSH_SIZES[Number(e.target.value)])}
+            className="w-full h-3 bg-purple-200 rounded-lg appearance-none cursor-pointer"
             style={{
-              background: `linear-gradient(to right, #8B5CF6 0%, #8B5CF6 ${((brushSize - 2) / 48) * 100}%, #E9D5FF ${((brushSize - 2) / 48) * 100}%, #E9D5FF 100%)`
+              background: `linear-gradient(to right, #8B5CF6 0%, #8B5CF6 ${percent}%, #E9D5FF ${percent}%, #E9D5FF 100%)`
             }}
           />
-          {/* Size indicators */}
           <div className="flex justify-between text-xs text-purple-600 mt-1">
-            <span>2px</span>
-            <span>26px</span>
-            <span>50px</span>
+            <span>{BRUSH_SIZES[0]}px</span>
+            <span>{BRUSH_SIZES[Math.floor(BRUSH_SIZES.length / 2)]}px</span>
+            <span>{BRUSH_SIZES[BRUSH_SIZES.length - 1]}px</span>
           </div>
         </div>
       </div>
