@@ -15,8 +15,8 @@ export default function Home() {
         </div>
 
         {/* App Cards */}
-        <div className="max-w-4xl mx-auto mt-16">
-          <div className="grid md:grid-cols-2 gap-8">
+        <div className="max-w-6xl mx-auto mt-16">
+          <div className="grid md:grid-cols-3 gap-8">
             {/* Paint App Card */}
             <Link href="/paint-app">
               <div className="bg-white rounded-3xl shadow-2xl overflow-hidden transform hover:scale-105 transition-all duration-300 cursor-pointer border-4 border-purple-300">
@@ -95,6 +95,48 @@ export default function Home() {
                   <div className="mt-6">
                     <button className="w-full bg-gradient-to-r from-blue-500 to-green-500 text-white font-bold py-4 px-6 rounded-2xl text-lg shadow-lg hover:shadow-xl transition-all duration-200">
                       Start Converting! 💱
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </Link>
+
+            {/* Product Search Card */}
+            <Link href="/product-search">
+              <div className="bg-white rounded-3xl shadow-2xl overflow-hidden transform hover:scale-105 transition-all duration-300 cursor-pointer border-4 border-orange-300">
+                <div className="bg-gradient-to-r from-orange-500 to-red-500 p-8 text-white text-center">
+                  <div className="text-6xl mb-4">🔍</div>
+                  <h2 className="text-3xl font-bold mb-2">Price Aggregator</h2>
+                  <p className="text-orange-100">
+                    Find the best deals across multiple stores!
+                  </p>
+                </div>
+                <div className="p-8">
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">🛒</span>
+                      <span className="text-gray-700">Search multiple e-commerce sites</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">💰</span>
+                      <span className="text-gray-700">Compare real-time prices</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">🔗</span>
+                      <span className="text-gray-700">Direct links to buy products</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">⚡</span>
+                      <span className="text-gray-700">Fast and reliable results</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">📱</span>
+                      <span className="text-gray-700">Works on all devices</span>
+                    </div>
+                  </div>
+                  <div className="mt-6">
+                    <button className="w-full bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold py-4 px-6 rounded-2xl text-lg shadow-lg hover:shadow-xl transition-all duration-200">
+                      Start Searching! 🔍
                     </button>
                   </div>
                 </div>
