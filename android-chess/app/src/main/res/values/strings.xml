@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Marble Chess</string>
+    <string name="mode_pvp">Player vs Player</string>
+    <string name="mode_ai">Player vs Computer</string>
+    <string name="white_to_move">White to move</string>
+    <string name="black_to_move">Black to move</string>
+    <string name="white_in_check">White is in check!</string>
+    <string name="black_in_check">Black is in check!</string>
+    <string name="white_wins">White wins! Checkmate!</string>
+    <string name="black_wins">Black wins! Checkmate!</string>
+    <string name="stalemate">Stalemate! Game is a draw.</string>
+    <string name="draw">Draw!</string>
+    <string name="thinking">Computer is thinking…</string>
+    <string name="new_game">New Game</string>
+    <string name="undo">Undo</string>
+    <string name="select_promotion">Select promotion piece</string>
+    <string name="queen">Queen</string>
+    <string name="rook">Rook</string>
+    <string name="bishop">Bishop</string>
+    <string name="knight">Knight</string>
+    <string name="difficulty_easy">Easy</string>
+    <string name="difficulty_medium">Medium</string>
+    <string name="difficulty_hard">Hard</string>
+    <string name="difficulty_expert">Expert</string>
+    <string name="play_as_white">Play as White</string>
+    <string name="play_as_black">Play as Black</string>
+</resources>

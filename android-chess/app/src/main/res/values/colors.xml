@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="marble_white">#F5F5F0</color>
+    <color name="marble_black">#2C2C2C</color>
+    <color name="marble_light">#E8E4E0</color>
+    <color name="marble_dark">#3D3D3D</color>
+    <color name="marble_bg">#1A1A1A</color>
+    <color name="highlight_selected">#80FFD700</color>
+    <color name="highlight_legal">#604CAF50</color>
+    <color name="highlight_last_move">#40FFFFFF</color>
+    <color name="highlight_check">#80FF4444</color>
+    <color name="wood_light">#D4A574</color>
+    <color name="wood_dark">#8B5A2B</color>
+</resources>
