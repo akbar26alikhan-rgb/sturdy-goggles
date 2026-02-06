@@ -1,3 +1,12 @@
+# Multi-App Repository
+
+This repository contains multiple applications:
+
+1. [**Real-Time Currency Converter**](#real-time-currency-converter) - A Next.js web application for currency conversion
+2. [**Marble Chess**](#marble-chess) - A native Android chess app with classic marble aesthetics
+
+---
+
 # Real-Time Currency Converter
 
 A comprehensive Next.js application that provides real-time currency conversion with live exchange rates from reliable APIs.
@@ -120,3 +129,86 @@ Check out the [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 - Modern browsers (Chrome, Firefox, Safari, Edge)
 - Mobile browsers (iOS Safari, Chrome Mobile)
 - Responsive design for all screen sizes
+
+---
+
+# Marble Chess
+
+A native Android chess application with a classic marble aesthetic, featuring both player-vs-player and player-vs-AI modes with strong Stockfish integration.
+
+## Features
+
+- ♟️ **Complete Chess Rules**: Full implementation including castling, en passant, promotion, check, checkmate, and stalemate detection
+- 👥 **Two Game Modes**:
+  - **Player vs Player**: Play against a friend on the same device
+  - **Player vs Computer**: Challenge the AI with 4 difficulty levels (Easy, Medium, Hard, Expert)
+- 🤖 **Strong AI**: Integrated Stockfish chess engine support with fallback tactical engine
+- 🎨 **Marble Aesthetic**: Beautiful marble-themed UI with custom-drawn chess pieces
+- 📱 **Responsive Design**: Optimized for phones and tablets
+- ↩️ **Undo Support**: Take back moves during gameplay
+- 🎯 **Visual Hints**: Legal move indicators, last move highlighting, and check warnings
+
+## Project Structure
+
+```
+android-chess/
+├── app/src/main/java/com/marble/chess/
+│   ├── ChessApplication.kt         # Application class
+│   ├── MainActivity.kt             # Main entry point
+│   ├── engine/
+│   │   ├── GameController.kt       # Game state management
+│   │   └── EngineManager.kt        # Stockfish integration
+│   ├── viewmodel/
+│   │   └── ChessViewModel.kt       # UI state management
+│   └── ui/
+│       ├── theme/                  # Material 3 theming
+│       ├── components/
+│       │   ├── ChessBoard.kt       # Board rendering
+│       │   └── ChessPieces.kt      # Custom piece graphics
+│       └── screens/
+│           ├── MainMenuScreen.kt   # Game mode selection
+│           └── ChessGameScreen.kt  # Main game UI
+└── README.md                       # Detailed Android app documentation
+```
+
+## Building the Android App
+
+### Prerequisites
+- Android Studio Hedgehog (2023.1.1) or later
+- JDK 17 or later
+- Android SDK with API level 34
+
+### Build Instructions
+
+1. **Navigate to the Android project**:
+   ```bash
+   cd android-chess
+   ```
+
+2. **Open in Android Studio** and build, or use command line:
+   ```bash
+   ./gradlew assembleDebug
+   ```
+
+3. **Install on device**:
+   ```bash
+   adb install app/build/outputs/apk/debug/app-debug.apk
+   ```
+
+### Stockfish Integration (Optional)
+
+For the strongest AI play, download Stockfish binaries and place them in:
+`android-chess/app/src/main/assets/`
+
+- `stockfish-android-arm64` for 64-bit ARM devices
+- `stockfish-android-armv7` for 32-bit ARM devices
+
+**Note**: Stockfish is GPL v3 licensed. See the [android-chess README](android-chess/README.md) for licensing details.
+
+## Tech Stack
+
+- **Kotlin** - Modern Android development language
+- **Jetpack Compose** - Declarative UI toolkit
+- **Chesslib** - Java chess library for move generation and validation
+- **Stockfish** (optional) - World-class chess engine via UCI protocol
+- **Material Design 3** - Modern Android design system
