@@ -15,8 +15,50 @@ export default function Home() {
         </div>
 
         {/* App Cards */}
-        <div className="max-w-6xl mx-auto mt-16">
-          <div className="grid md:grid-cols-3 gap-8">
+        <div className="max-w-7xl mx-auto mt-16">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {/* Marble Chess Card */}
+            <Link href="/chess">
+              <div className="bg-white rounded-3xl shadow-2xl overflow-hidden transform hover:scale-105 transition-all duration-300 cursor-pointer border-4 border-slate-400">
+                <div className="bg-gradient-to-r from-slate-700 to-slate-900 p-8 text-white text-center">
+                  <div className="text-6xl mb-4">♟️</div>
+                  <h2 className="text-3xl font-bold mb-2">Marble Chess</h2>
+                  <p className="text-slate-300">
+                    Play strategy chess against a smart AI!
+                  </p>
+                </div>
+                <div className="p-8">
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">🤖</span>
+                      <span className="text-gray-700">Smart AI opponent (Minimax)</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">🏛️</span>
+                      <span className="text-gray-700">Stone & Marble aesthetic</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">🎲</span>
+                      <span className="text-gray-700">Cosmetic dice roller</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">↶</span>
+                      <span className="text-gray-700">Undo moves and restart</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">📜</span>
+                      <span className="text-gray-700">Full move history log</span>
+                    </div>
+                  </div>
+                  <div className="mt-6">
+                    <button className="w-full bg-gradient-to-r from-slate-700 to-slate-900 text-white font-bold py-4 px-6 rounded-2xl text-lg shadow-lg hover:shadow-xl transition-all duration-200">
+                      Play Chess! ♟️
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </Link>
+
             {/* Paint App Card */}
             <Link href="/paint-app">
               <div className="bg-white rounded-3xl shadow-2xl overflow-hidden transform hover:scale-105 transition-all duration-300 cursor-pointer border-4 border-purple-300">
