@@ -101,6 +101,48 @@ export default function Home() {
               </div>
             </Link>
 
+            {/* Water Intake Card */}
+            <Link href="/water-intake">
+              <div className="bg-white rounded-3xl shadow-2xl overflow-hidden transform hover:scale-105 transition-all duration-300 cursor-pointer border-4 border-cyan-300">
+                <div className="bg-gradient-to-r from-cyan-500 to-blue-500 p-8 text-white text-center">
+                  <div className="text-6xl mb-4">💧</div>
+                  <h2 className="text-3xl font-bold mb-2">Water Intake</h2>
+                  <p className="text-cyan-100">
+                    Calculate your daily water needs based on your body!
+                  </p>
+                </div>
+                <div className="p-8">
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">📏</span>
+                      <span className="text-gray-700">Based on height & weight</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">💪</span>
+                      <span className="text-gray-700">Considers your body build</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">⚡</span>
+                      <span className="text-gray-700">Activity level adjustment</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">📊</span>
+                      <span className="text-gray-700">Daily progress tracker</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">🥤</span>
+                      <span className="text-gray-700">Glasses, bottles & cups</span>
+                    </div>
+                  </div>
+                  <div className="mt-6">
+                    <button className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-bold py-4 px-6 rounded-2xl text-lg shadow-lg hover:shadow-xl transition-all duration-200">
+                      Track Water! 💧
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </Link>
+
             {/* Product Search Card */}
             <Link href="/product-search">
               <div className="bg-white rounded-3xl shadow-2xl overflow-hidden transform hover:scale-105 transition-all duration-300 cursor-pointer border-4 border-orange-300">
