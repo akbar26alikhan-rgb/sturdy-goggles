@@ -5,18 +5,18 @@ export default function Home() {
     <div className="min-h-screen bg-gradient-to-br from-blue-400 via-purple-500 to-pink-500">
       {/* Hero Section */}
       <div className="container mx-auto px-4 py-16">
-        <div className="text-center text-white">
-          <h1 className="text-6xl font-bold mb-6 drop-shadow-lg">
-            🎨 Welcome to Kids Apps! 🎨
-          </h1>
-          <p className="text-xl mb-8 drop-shadow-md">
-            Fun and educational applications designed just for children
-          </p>
-        </div>
+      <div className="text-center text-white">
+        <h1 className="text-5xl md:text-6xl font-bold mb-6 drop-shadow-lg">
+          🚀 Welcome to Web Apps! 🚀
+        </h1>
+        <p className="text-xl mb-8 drop-shadow-md">
+          Fun, educational, and professional applications for everyone
+        </p>
+      </div>
 
         {/* App Cards */}
-        <div className="max-w-6xl mx-auto mt-16">
-          <div className="grid md:grid-cols-3 gap-8">
+        <div className="max-w-7xl mx-auto mt-16">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* Paint App Card */}
             <Link href="/paint-app">
               <div className="bg-white rounded-3xl shadow-2xl overflow-hidden transform hover:scale-105 transition-all duration-300 cursor-pointer border-4 border-purple-300">
@@ -137,6 +137,48 @@ export default function Home() {
                   <div className="mt-6">
                     <button className="w-full bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold py-4 px-6 rounded-2xl text-lg shadow-lg hover:shadow-xl transition-all duration-200">
                       Start Searching! 🔍
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </Link>
+
+            {/* Stock Indicators Card */}
+            <Link href="/stock-indicators">
+              <div className="bg-white rounded-3xl shadow-2xl overflow-hidden transform hover:scale-105 transition-all duration-300 cursor-pointer border-4 border-green-300">
+                <div className="bg-gradient-to-r from-green-600 via-blue-600 to-orange-500 p-8 text-white text-center">
+                  <div className="text-6xl mb-4">📈</div>
+                  <h2 className="text-3xl font-bold mb-2">Stock Indicators</h2>
+                  <p className="text-green-100">
+                    Indian Market Technical Analysis Tools!
+                  </p>
+                </div>
+                <div className="p-8">
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">🇮🇳</span>
+                      <span className="text-gray-700">10 powerful trading indicators</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">⚙️</span>
+                      <span className="text-gray-700">Optimized for NSE/BSE markets</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">🛡️</span>
+                      <span className="text-gray-700">Complete stop-loss framework</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">📊</span>
+                      <span className="text-gray-700">MA, RSI, MACD, VWAP & more</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">💡</span>
+                      <span className="text-gray-700">Research-backed settings</span>
+                    </div>
+                  </div>
+                  <div className="mt-6">
+                    <button className="w-full bg-gradient-to-r from-green-600 via-blue-600 to-orange-500 text-white font-bold py-4 px-6 rounded-2xl text-lg shadow-lg hover:shadow-xl transition-all duration-200">
+                      Start Trading! 📈
                     </button>
                   </div>
                 </div>

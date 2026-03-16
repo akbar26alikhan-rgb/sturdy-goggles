@@ -302,7 +302,7 @@ export async function scrapeProductPrices(productName: string): Promise<SearchRe
           price: 'Price not available',
           title: '',
           success: false,
-          error: error.message,
+          error: error instanceof Error ? error.message : 'Unknown error',
         });
         errorCount++;
       }

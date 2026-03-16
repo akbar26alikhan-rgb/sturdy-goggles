@@ -123,7 +123,7 @@ class HttpClient {
       // Add additional delay before request
       await new Promise(resolve => setTimeout(resolve, attemptDelay));
 
-      let lastError: Error;
+      let lastError: Error | null = null;
 
       for (let attempt = 0; attempt < this.retryConfig.maxAttempts; attempt++) {
         try {
@@ -152,10 +152,11 @@ class HttpClient {
           if (error instanceof Error && 'response' in error &&
               error.response &&
               typeof error.response === 'object' &&
-              'status' in error.response &&
-              (error.response as { status: number }).status === 404 ||
-              (error.response as { status: number }).status === 403) {
-            throw new Error(`Request blocked or page not found (${(error.response as { status: number }).status})`);
+              'status' in error.response) {
+            const status = (error.response as { status: number }).status;
+            if (status === 404 || status === 403) {
+              throw new Error(`Request blocked or page not found (${status})`);
+            }
           }
 
           if (attempt < this.retryConfig.maxAttempts - 1) {
@@ -166,7 +167,7 @@ class HttpClient {
         }
       }
 
-      throw new Error(`Failed after ${this.retryConfig.maxAttempts} attempts: ${lastError.message}`);
+      throw new Error(`Failed after ${this.retryConfig.maxAttempts} attempts: ${lastError?.message || 'Unknown error'}`);
     });
   }
 
