@@ -1,0 +1,71 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Stock {
+  id                String   @id @default(cuid())
+  symbol            String   @unique
+  name              String
+  sector            String?
+  marketCap         Float?
+  lastPrice         Float?
+  prevClose         Float?
+  dayHigh           Float?
+  dayLow            Float?
+  volume            Float?
+  avgVolume20       Float?
+  dma50             Float?
+  dma200            Float?
+  peRatio           Float?
+  pbRatio           Float?
+  debtToEquity      Float?
+  updatedAt         DateTime @updatedAt
+  
+  fundamentalData   FundamentalData?
+  scoring           Scoring?
+  alerts            Alert[]
+}
+
+model FundamentalData {
+  id               String @id @default(cuid())
+  stockId          String @unique
+  stock            Stock  @relation(fields: [stockId], references: [id])
+  salesGrowthYoY   Float?
+  profitGrowthYoY  Float?
+  epsGrowthYoY     Float?
+  interestCoverage Float?
+  operatingCashflow Float?
+  fiiDiiChange     Float?
+}
+
+model Scoring {
+  id               String @id @default(cuid())
+  stockId          String @unique
+  stock            Stock  @relation(fields: [stockId], references: [id])
+  trendScore       Int
+  volumeScore      Int
+  breakoutScore    Int
+  growthScore      Int
+  financialScore   Int
+  valuationScore   Int
+  institutionalScore Int
+  sectorScore      Int
+  totalScore       Int
+  tradeGrade       String
+  updatedAt        DateTime @updatedAt
+}
+
+model Alert {
+  id        String   @id @default(cuid())
+  stockId   String
+  stock     Stock    @relation(fields: [stockId], references: [id])
+  type      String   // "SCORE_ABOVE", "BREAKOUT", "VOLUME_SPIKE"
+  threshold Float
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+}

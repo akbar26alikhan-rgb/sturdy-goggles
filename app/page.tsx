@@ -226,6 +226,48 @@ export default function Home() {
                 </div>
               </div>
             </Link>
+
+            {/* Stock Scanner Card */}
+            <Link href="/stock-scanner">
+              <div className="bg-white rounded-3xl shadow-2xl overflow-hidden transform hover:scale-105 transition-all duration-300 cursor-pointer border-4 border-emerald-300">
+                <div className="bg-gradient-to-r from-emerald-600 to-teal-500 p-8 text-white text-center">
+                  <div className="text-6xl mb-4">💎</div>
+                  <h2 className="text-3xl font-bold mb-2">Profit Scanner</h2>
+                  <p className="text-emerald-100">
+                    Find high-profit potential Indian stocks!
+                  </p>
+                </div>
+                <div className="p-8">
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">📊</span>
+                      <span className="text-gray-700">Proprietary 0-100 scoring system</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">⚡</span>
+                      <span className="text-gray-700">Live NSE/BSE market data</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">📈</span>
+                      <span className="text-gray-700">Trend & breakout analysis</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">📋</span>
+                      <span className="text-gray-700">Detailed fundamental reports</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">🔔</span>
+                      <span className="text-gray-700">Real-time alerts & auto-refresh</span>
+                    </div>
+                  </div>
+                  <div className="mt-6">
+                    <button className="w-full bg-gradient-to-r from-emerald-600 to-teal-500 text-white font-bold py-4 px-6 rounded-2xl text-lg shadow-lg hover:shadow-xl transition-all duration-200">
+                      Scan Stocks! 💎
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </Link>
           </div>
         </div>
 
