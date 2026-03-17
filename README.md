@@ -1,8 +1,53 @@
-# Indian Stock Profit Scanner
+# Multi-App Web Platform
+
+A collection of powerful web applications including:
+- **Indian Stock Profit Scanner**: Stock analysis and scoring system
+- **Text to Speech**: Multi-language TTS converter for Indian languages
+- **Currency Converter**: Real-time currency conversion with charts
+- **Paint App**: Creative drawing application for kids
+- And more!
+
+---
+
+## Text to Speech Application
+
+A modern, responsive web application that converts text into natural-sounding speech with support for all major Indian languages.
+
+### Features
+
+- **11 Indian Languages Supported**:
+  - Hindi, Marathi, Gujarati, Tamil, Telugu, Kannada, Malayalam, Bengali, Punjabi, Urdu, English (India)
+- **No Character Limit**: Process unlimited text by chunking
+- **Multiple Voices**: Male and female voice options (Standard & Wavenet)
+- **Speech Controls**: Adjustable speed (0.5x - 2.0x) and pitch
+- **File Upload**: Support for TXT, DOCX, and PDF files
+- **Audio Player**: Built-in playback with play, pause, stop controls
+- **MP3 Download**: Download generated audio as MP3 files
+- **History**: Save and revisit previous conversions
+- **Dark Mode**: Toggle between light and dark themes
+- **Web Speech API Fallback**: Works without API key using browser TTS
+
+### TTS Setup
+
+1. **Get a Google Cloud API Key** (optional but recommended for high quality):
+   - Visit [Google Cloud Console](https://console.cloud.google.com/)
+   - Enable the Text-to-Speech API
+   - Create an API key
+
+2. **Configure environment variables**:
+   ```env
+   GOOGLE_TTS_API_KEY="your-api-key-here"
+   ```
+
+3. **Without API Key**: Enable "Use browser TTS" option in the app for free text-to-speech using Web Speech API (limited quality).
+
+---
+
+## Indian Stock Profit Scanner
 
 A full-stack web application that scans NSE stocks using live market data and ranks them for swing/short-term trading using a scoring system out of 100.
 
-## Features
+### Features
 
 - **Live Market Data**: Fetches data from NSE via Yahoo Finance.
 - **Profit Potential Scoring**: A weighted scoring system (0-100) based on:
