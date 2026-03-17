@@ -20,7 +20,12 @@ export interface ScoreBreakdown {
   grade: string;
 }
 
-export async function getStockData(symbol: string) {
+export interface StockData {
+  quote: any;
+  history: any[];
+}
+
+export async function getStockData(symbol: string): Promise<StockData | null> {
   const yahooSymbol = symbol.endsWith('.NS') || symbol.endsWith('.BO') ? symbol : `${symbol}.NS`;
   
   try {
