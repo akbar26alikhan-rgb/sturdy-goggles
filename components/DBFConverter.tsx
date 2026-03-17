@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo, useCallback } from 'react';
+import React, { useState, useMemo } from 'react';
 import { 
   Upload, 
   FileSpreadsheet, 
@@ -23,6 +23,7 @@ import { cn } from '@/lib/utils';
 
 export default function DBFConverter() {
   const [data, setData] = useState<DBFData | null>(null);
+  const [fileName, setFileName] = useState<string>('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
@@ -31,11 +32,9 @@ export default function DBFConverter() {
     currentPage: 1,
     pageSize: 10
   });
+  const [isDragOver, setIsDragOver] = useState(false);
 
-  const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
-
+  const processFile = async (file: File) => {
     if (!file.name.toLowerCase().endsWith('.dbf')) {
       setError('Please upload a valid .dbf file');
       return;
@@ -52,12 +51,37 @@ export default function DBFConverter() {
       const buffer = await file.arrayBuffer();
       const parsedData = await parseDBF(buffer);
       setData(parsedData);
+      setFileName(file.name.replace(/\.dbf$/i, ''));
     } catch (err) {
       console.error('Error parsing DBF:', err);
       setError('Failed to parse DBF file. It might be corrupted or use an unsupported format.');
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    await processFile(file);
+  };
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragOver(true);
+  };
+
+  const handleDragLeave = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragOver(false);
+  };
+
+  const handleDrop = async (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragOver(false);
+    const file = e.dataTransfer.files?.[0];
+    if (!file) return;
+    await processFile(file);
   };
 
   const handleSort = (key: string) => {
@@ -119,7 +143,7 @@ export default function DBFConverter() {
     const link = document.createElement('a');
     const url = URL.createObjectURL(blob);
     link.setAttribute('href', url);
-    link.setAttribute('download', 'exported_data.csv');
+    link.setAttribute('download', `${fileName}.csv`);
     link.style.visibility = 'hidden';
     document.body.appendChild(link);
     link.click();
@@ -131,7 +155,7 @@ export default function DBFConverter() {
     const worksheet = XLSX.utils.json_to_sheet(filteredRecords);
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, 'Data');
-    XLSX.writeFile(workbook, 'exported_data.xlsx');
+    XLSX.writeFile(workbook, `${fileName}.xlsx`);
   };
 
   const exportToPDF = () => {
@@ -149,22 +173,42 @@ export default function DBFConverter() {
       margin: { top: 20 },
     });
     
-    doc.save('exported_data.pdf');
+    doc.save(`${fileName}.pdf`);
   };
 
   return (
     <div className="w-full max-w-6xl mx-auto space-y-6">
       {/* Upload Section */}
-      <div className="bg-white dark:bg-zinc-900 rounded-2xl shadow-xl border border-zinc-200 dark:border-zinc-800 overflow-hidden">
+      <div 
+        className={cn(
+          "bg-white dark:bg-zinc-900 rounded-2xl shadow-xl border-2 border-dashed overflow-hidden transition-all duration-200",
+          isDragOver 
+            ? "border-blue-500 bg-blue-50 dark:bg-blue-900/10" 
+            : "border-zinc-200 dark:border-zinc-800"
+        )}
+        onDragOver={handleDragOver}
+        onDragLeave={handleDragLeave}
+        onDrop={handleDrop}
+      >
         <div className="p-8 text-center">
           <div className="mb-6 flex justify-center">
-            <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-full">
-              <FileSpreadsheet className="w-12 h-12 text-blue-600 dark:text-blue-400" />
+            <div className={cn(
+              "p-4 rounded-full transition-colors duration-200",
+              isDragOver 
+                ? "bg-blue-100 dark:bg-blue-900/30" 
+                : "bg-blue-50 dark:bg-blue-900/20"
+            )}>
+              <FileSpreadsheet className={cn(
+                "w-12 h-12 transition-colors duration-200",
+                isDragOver 
+                  ? "text-blue-700 dark:text-blue-300" 
+                  : "text-blue-600 dark:text-blue-400"
+              )} />
             </div>
           </div>
           <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-2">DBF Converter</h2>
           <p className="text-zinc-600 dark:text-zinc-400 max-w-md mx-auto mb-8">
-            Upload your dBase (.dbf) files to preview, filter, and export them to CSV, Excel, or PDF.
+            Drag and drop your dBase (.dbf) file or click to browse. Preview, filter, and export to CSV, Excel, or PDF.
           </p>
 
           <label className="relative group cursor-pointer inline-block">
@@ -189,6 +233,12 @@ export default function DBFConverter() {
               {loading ? 'Processing...' : 'Upload DBF File'}
             </div>
           </label>
+
+          {fileName && (
+            <div className="mt-4 text-sm text-zinc-500 dark:text-zinc-400">
+              Currently viewing: <span className="font-medium text-zinc-700 dark:text-zinc-300">{fileName}.dbf</span>
+            </div>
+          )}
           
           {error && (
             <div className="mt-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl flex items-center gap-3 text-red-800 dark:text-red-200 text-sm max-w-md mx-auto">

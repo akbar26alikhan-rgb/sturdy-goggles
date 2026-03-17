@@ -13,7 +13,7 @@ export async function GET(request: NextRequest) {
   
   try {
     // Try to get from DB first
-    let stocks = [];
+    let stocks: any[] = [];
     
     // For the sake of this environment where DB might not be ready, 
     // we'll check if we can even query the DB.

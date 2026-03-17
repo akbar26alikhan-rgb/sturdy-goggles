@@ -4,9 +4,10 @@ import prisma from '@/lib/prisma';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { symbol: string } }
+  { params }: { params: Promise<{ symbol: string }> }
 ) {
-  const symbol = params.symbol.toUpperCase();
+  const { symbol: symbolParam } = await params;
+  const symbol = symbolParam.toUpperCase();
   
   try {
     const data = await getStockData(symbol);
@@ -14,22 +15,23 @@ export async function GET(
       return NextResponse.json({ success: false, error: 'Stock not found' }, { status: 404 });
     }
 
-    const scores = calculateScores(data.quote, data.history);
+    const { quote, history } = data;
+    const scores = calculateScores(quote, history);
     
     // Attempt to update DB
     try {
       await prisma.stock.upsert({
         where: { symbol },
         update: {
-          lastPrice: data.quote.regularMarketPrice,
-          volume: data.quote.regularMarketVolume,
+          lastPrice: quote.regularMarketPrice,
+          volume: quote.regularMarketVolume,
           updatedAt: new Date(),
         },
         create: {
           symbol,
-          name: data.quote.longName || symbol,
-          lastPrice: data.quote.regularMarketPrice,
-          volume: data.quote.regularMarketVolume,
+          name: quote.longName || symbol,
+          lastPrice: quote.regularMarketPrice,
+          volume: quote.regularMarketVolume,
         }
       });
     } catch (e) {
@@ -40,25 +42,25 @@ export async function GET(
       success: true,
       data: {
         symbol,
-        name: data.quote.longName,
-        price: data.quote.regularMarketPrice,
-        change: data.quote.regularMarketChange,
-        changePercent: data.quote.regularMarketChangePercent,
-        volume: data.quote.regularMarketVolume,
-        marketCap: data.quote.marketCap,
-        peRatio: data.quote.trailingPE,
-        high52: data.quote.fiftyTwoWeekHigh,
-        low52: data.quote.fiftyTwoWeekLow,
+        name: quote.longName,
+        price: quote.regularMarketPrice,
+        change: quote.regularMarketChange,
+        changePercent: quote.regularMarketChangePercent,
+        volume: quote.regularMarketVolume,
+        marketCap: quote.marketCap,
+        peRatio: quote.trailingPE,
+        high52: quote.fiftyTwoWeekHigh,
+        low52: quote.fiftyTwoWeekLow,
         scores,
-        history: data.history.slice(-30).map(h => ({
+        history: history.slice(-30).map(h => ({
           date: h.date,
           close: h.close,
           volume: h.volume
         })),
         details: {
-          sector: data.quote.sector,
-          industry: data.quote.industry,
-          summary: data.quote.longBusinessSummary
+          sector: quote.sector,
+          industry: quote.industry,
+          summary: quote.longBusinessSummary
         }
       }
     });
