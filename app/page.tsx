@@ -268,6 +268,48 @@ export default function Home() {
                 </div>
               </div>
             </Link>
+
+            {/* DBF Converter Card */}
+            <Link href="/dbf-converter">
+              <div className="bg-white rounded-3xl shadow-2xl overflow-hidden transform hover:scale-105 transition-all duration-300 cursor-pointer border-4 border-blue-400">
+                <div className="bg-gradient-to-r from-blue-600 to-indigo-700 p-8 text-white text-center">
+                  <div className="text-6xl mb-4">📂</div>
+                  <h2 className="text-3xl font-bold mb-2">DBF Converter</h2>
+                  <p className="text-blue-100">
+                    Professional dBase file viewer and converter!
+                  </p>
+                </div>
+                <div className="p-8">
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">🔍</span>
+                      <span className="text-gray-700">Preview and search records</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">📊</span>
+                      <span className="text-gray-700">Paginated and sortable table</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">📄</span>
+                      <span className="text-gray-700">Export to PDF, CSV, and Excel</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">🛡️</span>
+                      <span className="text-gray-700">100% private client-side processing</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">⚡</span>
+                      <span className="text-gray-700">Fast handling of large datasets</span>
+                    </div>
+                  </div>
+                  <div className="mt-6">
+                    <button className="w-full bg-gradient-to-r from-blue-600 to-indigo-700 text-white font-bold py-4 px-6 rounded-2xl text-lg shadow-lg hover:shadow-xl transition-all duration-200">
+                      Open Converter! 📂
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </Link>
           </div>
         </div>
 
