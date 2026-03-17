@@ -310,6 +310,48 @@ export default function Home() {
                 </div>
               </div>
             </Link>
+
+            {/* Text to Speech Card */}
+            <Link href="/text-to-speech">
+              <div className="bg-white rounded-3xl shadow-2xl overflow-hidden transform hover:scale-105 transition-all duration-300 cursor-pointer border-4 border-violet-300">
+                <div className="bg-gradient-to-r from-violet-500 to-fuchsia-600 p-8 text-white text-center">
+                  <div className="text-6xl mb-4">🎙️</div>
+                  <h2 className="text-3xl font-bold mb-2">Text to Speech</h2>
+                  <p className="text-violet-100">
+                    Convert text to natural speech in Indian languages!
+                  </p>
+                </div>
+                <div className="p-8">
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">🇮🇳</span>
+                      <span className="text-gray-700">11 Indian languages supported</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">🗣️</span>
+                      <span className="text-gray-700">Male & female voices</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">⚡</span>
+                      <span className="text-gray-700">No character limit</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">📁</span>
+                      <span className="text-gray-700">Upload TXT, DOCX, PDF files</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">💾</span>
+                      <span className="text-gray-700">Download MP3 audio</span>
+                    </div>
+                  </div>
+                  <div className="mt-6">
+                    <button className="w-full bg-gradient-to-r from-violet-500 to-fuchsia-600 text-white font-bold py-4 px-6 rounded-2xl text-lg shadow-lg hover:shadow-xl transition-all duration-200">
+                      Start Speaking! 🎙️
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </Link>
           </div>
         </div>
 
