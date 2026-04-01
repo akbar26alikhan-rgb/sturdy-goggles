@@ -30,7 +30,6 @@ export default function PaintApp() {
   const [currentTool, setCurrentTool] = useState<Tool>('brush');
   const [currentColor, setCurrentColor] = useState<string>('#000000');
   const [brushSize, setBrushSize] = useState<BrushSize>(10);
-  const [canvasKey, setCanvasKey] = useState<number>(0);
 
   const handleToolChange = (tool: Tool) => {
     setCurrentTool(tool);
@@ -45,7 +44,7 @@ export default function PaintApp() {
   };
 
   const handleClearCanvas = () => {
-    setCanvasKey(prev => prev + 1);
+    window.dispatchEvent(new CustomEvent('clearCanvas'));
   };
 
   const handleSaveImage = () => {
@@ -99,7 +98,6 @@ export default function PaintApp() {
           <div className="flex-1 order-1 lg:order-2">
             <div className="bg-white rounded-3xl shadow-2xl border-4 border-purple-300 p-4">
               <DrawingCanvas
-                key={canvasKey}
                 currentTool={currentTool}
                 currentColor={currentColor}
                 brushSize={brushSize}
